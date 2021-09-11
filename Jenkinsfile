@@ -10,6 +10,6 @@ node{
     }
 
     stage ('Run image') {
-        docker.image('my_appp').withRun('-p 3000:3000 -m') { c -> sh 'docker ps'}
+        docker.image('my_appp').withRun('-p 3000:3000') { c -> sh 'docker ps'}
     }
 }
