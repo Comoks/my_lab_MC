@@ -6,7 +6,7 @@ node{
     }
 
     stage ('Build image') {
-        app = docker.build ("my_appp")
+        app = docker.build("my_appp")
     }
 
     stage ('Run image') {
