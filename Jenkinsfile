@@ -1,15 +1,26 @@
 node{
-    def app
+    def registryProjet='772552573479.dkr.ecr.eu-west-3.amazonaws.com/my_appp'
+    def IMAGE="${registryProjet}:version-${env.BUILD_ID}"
 
+    //environment {
+     //   registry = "772552573479.dkr.ecr.eu-west-3.amazonaws.com/my_appp"
+   // }
     stage('Clone') {
         checkout scm
     }
 
     stage ('Build image') {
-        app = docker.build("my_appp")
+        app = docker.build ("$IMAGE", '.')
     }
 
-    stage ('Run image') {
-        docker.image('my_appp').withRun('-p 3000:3000') { c -> sh 'docker ps'}
+    stage('Push') {
+        steps {
+            script{
+                sh 'aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 772552573479.dkr.ecr.eu-west-3.amazonaws.com'
+                sh 'docker push 772552573479.dkr.ecr.eu-west-3.amazonaws.com/my_appp:latest'
+            }
+        }
+        
     }
+
 }
