@@ -1,6 +1,6 @@
 node{
     def registryProjet='772552573479.dkr.ecr.eu-west-3.amazonaws.com/my_appp'
-    def IMAGE="${registryProjet}:version-${env.BUILD_ID}"
+    def IMAGE="${registryProjet}:latest"
 
     //environment {
      //   registry = "772552573479.dkr.ecr.eu-west-3.amazonaws.com/my_appp"
