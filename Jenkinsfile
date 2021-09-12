@@ -14,12 +14,11 @@ node{
     }
 
     stage('Push') {
-        steps {
-            script{
+        script{
                 sh 'aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 772552573479.dkr.ecr.eu-west-3.amazonaws.com'
                 sh 'docker push 772552573479.dkr.ecr.eu-west-3.amazonaws.com/my_appp:latest'
-            }
         }
+      
         
     }
 
